@@ -76,11 +76,13 @@ if [[ "$(plugin_read_config NO_CACHE "false")" == "false" ]] ; then
     if [[ -z "$cache_from_group_name" ]]; then
       cache_from_group_name=":default:"
     fi
+    echo "check cache_from_group_name"
+    echo $cache_from_group_name
     # The variable with this name will hold an array of group names:
     cache_image_name="$(service_name_cache_from_var "$service_name")"
 
     if [[ -n ${!cache_image_name+x} ]]; then
-      if [[ "$(named_array_values "${cache_image_name}")" =~ ${cache_from_group_name} ]]; then
+      if [[ "$(named_array_values "${cache_image_name}")" =~ "${cache_from_group_name}" ]]; then
         continue # skipping since there's already a pulled cache image for this service+group
       fi
     fi
