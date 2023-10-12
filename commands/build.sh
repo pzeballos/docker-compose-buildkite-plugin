@@ -58,6 +58,8 @@ if [[ "$(plugin_read_config NO_CACHE "false")" == "false" ]] ; then
   for line in $(plugin_read_list CACHE_FROM) ; do
     IFS="${separator}" read -r -a tokens <<< "$line"
     service_name=${tokens[0]}
+    echo "service_name tokens[0] "
+    echo $service_name
     service_image=$(IFS=':'; echo "${tokens[*]:1:2}")
     echo "inside FOR - service_image "
     echo $service_image
