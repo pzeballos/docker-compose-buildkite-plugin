@@ -59,8 +59,12 @@ if [[ "$(plugin_read_config NO_CACHE "false")" == "false" ]] ; then
     IFS="${separator}" read -r -a tokens <<< "$line"
     service_name=${tokens[0]}
     service_image=$(IFS=':'; echo "${tokens[*]:1:2}")
+    echo "inside FOR - service_image "
+    echo $service_image
+    
     if [ ${#tokens[@]} -gt 2 ]; then
       service_tag=${tokens[2]}
+      echo "if que asigna tokens[2]"
       echo $service_tag
     else
       service_tag="latest"
